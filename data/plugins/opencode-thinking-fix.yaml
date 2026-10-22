@@ -1,14 +1,19 @@
 name: opencode-thinking-fix
 repo: https://github.com/tbosancheros39/opencode-thinking-fix
-tagline: Fixes reasoning_content 400 errors for reasoning models in OpenCode
-description: Plugin+proxy combo that eliminates reasoning_content 400 errors when OpenCode strips chain-of-thought from multi-turn conversations. Supports DeepSeek, Kimi, GLM, MiMo and MiniMax with model-aware echo logic — injecting empty strings, spaces or full CoT as each model requires. Zero-dependency proxy captures reasoning from SSE streams and replays it on subsequent turns; all 7 tested models verified working on multi-turn.
-homepage: https://www.npmjs.com/package/opencode-thinking-fix
-installation: npm i opencode-thinking-fix
+npm: opencode-thinking-fix
+tagline: Keeps reasoning content across turns so reasoning models stop returning 400s
+description: A plugin plus an optional proxy that puts the reasoning content back on every later turn. Some providers reject a request whose assistant turns lost their chain of thought, and some silently drop the earlier reasoning; either way the model forgets what it was working on by turn two. The plugin preserves the field on the context hook with no configuration, and the proxy caches the real reasoning from the SSE stream and replays it. Covers DeepSeek, Kimi, GLM, MiMo, MiniMax, InclusionAI Ling, OpenCode Go and OpenRouter.
+kind: plugin
+topics:
+  - context
+  - providers
+compat: v2
 tags:
   - reasoning
+  - reasoning-content
   - deepseek
   - kimi
   - glm
   - minimax
-  - mimo
   - proxy
+installation: npm i opencode-thinking-fix
